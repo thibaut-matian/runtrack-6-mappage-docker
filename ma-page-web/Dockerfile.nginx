@@ -1,0 +1,15 @@
+# 1. On part de l'image officielle Nginx
+FROM nginx:latest
+
+# 2. On définit le dossier de travail (optionnel mais propre)
+WORKDIR /usr/share/nginx/html
+
+# 3. On vide le contenu par défaut de Nginx pour éviter les conflits
+RUN rm -rf ./*
+
+# 4. On copie le contenu de ton dossier local "ma-page-web" 
+# vers le dossier que Nginx utilise pour servir les fichiers
+COPY ./ma-page-web/ .
+
+# 5. Nginx écoute par défaut sur le port 80
+EXPOSE 80
